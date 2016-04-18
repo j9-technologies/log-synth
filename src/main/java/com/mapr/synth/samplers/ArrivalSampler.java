@@ -35,9 +35,9 @@ import java.util.regex.Pattern;
 
 /**
  * Samples progressive times that look like event arrival times.
- * <p/>
+ *
  * You can set the
- * <p/>
+ *
  * <il>
  * <li><em>rate</em> - use something like 5/m to indicate 5 events per minute.  The unit is optional, seconds are the default.</li>
  * <li><em>offset</em> - the minimum time between events, default is 0</li>

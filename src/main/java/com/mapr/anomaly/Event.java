@@ -139,6 +139,7 @@ public class Event implements Comparable<Event> {
     }
 
     public static class EventFormatException extends Throwable {
+        private final static long serialVersionUID = 0x9922ca396cd9d2a2L;
         public EventFormatException(String line) {
             super(String.format("Invalid event format found: \"%s\"", line));
         }

@@ -25,6 +25,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.io.LineProcessor;
 import com.google.common.io.Resources;
+import com.google.common.io.CharSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -82,7 +83,8 @@ public class WordGenerator {
         }
 
         try {
-          wordReader = new BufferedReader(Resources.newReaderSupplier(Resources.getResource(others), Charsets.UTF_8).getInput());
+          CharSource charSource = Resources.asCharSource(Resources.getResource(others), Charsets.UTF_8);
+          wordReader = new BufferedReader(charSource.openStream());
         } catch (IOException e) {
             log.error("Can't read resource \"{}\", will continue without realistic words", others);
             wordReader = null;

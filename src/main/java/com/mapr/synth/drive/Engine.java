@@ -41,6 +41,8 @@ import java.io.Serializable;
  */
 public class Engine implements Serializable {
 
+    private static final long serialVersionUID = -42;
+
     private static final double THROTTLE_CONTROL_GAIN = 50;
     private static final double MAX_THROTTLE = 100;
     private static final double ACCELERATION_BACKOFF = 30;

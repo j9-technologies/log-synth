@@ -51,7 +51,7 @@ public class FileSampler extends FieldSampler {
 
     public void setFile(String lookup) throws IOException {
         if (lookup.matches(".*\\.json")) {
-            readJsonData(Files.newInputStreamSupplier(new File(lookup)));
+            readJsonData(Files.asByteSource(new File(lookup)));
         } else {
             List<String> lines = Files.readLines(new File(lookup), Charsets.UTF_8);
             readDelimitedData(lookup, lines);
@@ -72,7 +72,7 @@ public class FileSampler extends FieldSampler {
     @SuppressWarnings({"UnusedDeclaration"})
     public void setResource(String lookup) throws IOException {
         if (lookup.matches(".*\\.json")) {
-            readJsonData(Resources.newInputStreamSupplier(Resources.getResource(lookup)));
+            readJsonData(Resources.asByteSource(Resources.getResource(lookup)));
         } else {
             List<String> lines = Resources.readLines(Resources.getResource(lookup), Charsets.UTF_8);
             readDelimitedData(lookup, lines);
@@ -107,9 +107,9 @@ public class FileSampler extends FieldSampler {
         data = localData;
     }
 
-    private void readJsonData(InputSupplier<? extends InputStream> input) throws IOException {
+    private void readJsonData(ByteSource input) throws IOException {
         ObjectMapper om = new ObjectMapper();
-        try (InputStream in = input.getInput()) {
+        try (InputStream in = input.openStream()) {
             data = om.readTree(in);
         }
     }
