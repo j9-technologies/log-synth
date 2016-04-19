@@ -42,13 +42,14 @@ object LogSynthBuild extends Build {
 
 
   lazy val log_synth =
-    sbt.Project("log-maker", file(".")).
+    sbt.Project("log-synth", file(".")).
       enablePlugins(ProjectPlugin).
       settings(
-        codePackage := "com.j9tech.logmaker",
+        codePackage := "com.j9tech.logsynth",
         titleForDocs := "J9 Log Maker",
         javacOptions := javacOptions.value.filterNot { opt ⇒ opt.equals("-Xdoclint:all") },
         resolvers := all_resolvers,
+        mainClass := Some("com.mapr.synth.Synth"),
         libraryDependencies ++= all_dependencies
       )
 
