@@ -33,23 +33,27 @@ object LogSynthBuild extends Build {
   val core = "org.processing" % "core" % "3.0b6"
   val t_digest = "com.tdunning" % "t-digest" % "3.0"
   val t_digest_test = "com.tdunning" % "t-digest" % "3.0"   % "test"
+  val clist_core = "org.backuity.clist" %% "clist-core"   % "2.0.2"
+  val clist_macros = "org.backuity.clist" %% "clist-macros" % "2.0.2" % "provided"
+  val logback_classic = "ch.qos.logback"  % "logback-classic" % "1.1.7"
 
   val all_dependencies = Seq (
     JavaFastPFOR, mahout_math, stream , junit, slf4j_api, slf4j_log4j12, args4j, jackson_databind, woodstox_core_asl,
-    jackson_dataformat_xml, freemarker, t_digest, stax_api, core, t_digest, t_digest_test
+    jackson_dataformat_xml, freemarker, t_digest, stax_api, core, t_digest, t_digest_test, clist_core, clist_macros,
+    logback_classic
   )
-
-
 
   lazy val log_synth =
     sbt.Project("log-synth", file(".")).
       enablePlugins(ProjectPlugin).
       settings(
-        codePackage := "com.j9tech.logsynth",
+        codePackage := "j9.logsynth",
+        sbtbuildinfo.BuildInfoKeys.buildInfoPackage := "j9.logsynth",
+        sbtbuildinfo.BuildInfoKeys.buildInfoObject := "BuildInfo",
         titleForDocs := "J9 Log Maker",
-        javacOptions := javacOptions.value.filterNot { opt ⇒ opt.equals("-Xdoclint:all") },
+        javacOptions := javacOptions.value.filterNot { opt ⇒ opt.equals("-Xdoclint:all") || opt.equals("-Werror") },
         resolvers := all_resolvers,
-        mainClass := Some("com.mapr.synth.Synth"),
+        mainClass := Some("j9.logsynth.LogSynth"),
         libraryDependencies ++= all_dependencies
       )
 

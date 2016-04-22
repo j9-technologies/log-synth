@@ -20,6 +20,6 @@
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_STRING" value="-g -encoding UTF-8 -Xlint -Xmaxerrs 50 -Xmaxwarns 50 -Xprefer:source -Werror" />
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-g -encoding UTF-8 -Xlint -Xmaxerrs 50 -Xmaxwarns 50 -Xprefer:source" />
   </component>
 </project>

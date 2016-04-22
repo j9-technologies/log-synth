@@ -84,7 +84,7 @@ public class Synth {
 
         if (opts.threads > 1) {
             Preconditions.checkArgument(!"-".equals(opts.output),
-                    "If more than on thread is used, you have to use -output to set the output directory");
+                    "If more than one thread is used, you have to use -output to set the output directory");
         }
 
         File outputDir = new File(opts.output);
@@ -417,7 +417,7 @@ public class Synth {
     }
 
     public static enum Format {
-        JSON, TSV, CSV, XML
+        JSON, TSV, CSV, XML, LOG
     }
 
 
@@ -442,7 +442,7 @@ public class Synth {
         File template;
 
         @Option(name = "-format")
-        Format format = Format.CSV;
+        Format format = Format.LOG;
 
         @Option(name = "-quote")
         Quote quote = Quote.DOUBLE_QUOTE;
