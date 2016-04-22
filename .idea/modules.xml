@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/log-synth.iml" filepath="$PROJECT_DIR$/.idea/modules/log-synth.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/log-synth.iml" filepath="$PROJECT_DIR$/.idea/modules/log-synth.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/log-synth-build.iml" filepath="$PROJECT_DIR$/.idea/modules/log-synth-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/log-synth-build.iml" filepath="$PROJECT_DIR$/.idea/modules/log-synth-build.iml" />
     </modules>
   </component>

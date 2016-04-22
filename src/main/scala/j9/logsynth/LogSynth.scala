@@ -14,13 +14,14 @@ import scala.concurrent.ExecutionContext
 import scala.concurrent.duration.{Duration, FiniteDuration}
 import scala.collection.JavaConverters._
 
-abstract class  LogSynth extends Command(description="Synthesize log files with realistic data") {
-  var outputDir = opt[File](default = new File("."), description="Path to directory where output logs will be created")
-  var numLoggers = opt[Int](default = 1, description="Number of loggers to write log files in parallel")
-  var rate = opt[Int](default = 1, description="Number of times per second log files are written")
-  var maxFiles = opt[Int](default = 20, description="Maximum number of log files per logger")
-  var maxFileSizeInMB = opt[Int](default = 50, description = "Maximum size of any log file in megabytes")
-  var schemas = args[Seq[File]](description = "Paths to schema files defining format of generated log files")
+abstract class  LogSynth extends Command(description="Synthesize log files with realistic data.") {
+  var outputDir = opt[File](default = new File("."), description="Path to directory where output logs will be created.")
+  var numLoggers = opt[Int](default = 1, description="Number of loggers to write log files in parallel.")
+  var rate = opt[Int](default = 1, description="Number of times per second log files are written.")
+  var maxFiles = opt[Int](default = 20, description="Maximum number of log files per logger.")
+  var maxFileSizeInMB = opt[Int](default = 50, description = "Maximum size of any log file in megabytes.")
+  var schemas = args[Seq[File]](
+    description = "Paths to schema files defining format of generated log files (see schemas dir).")
 }
 
 /** A continuously writing log synthesizer */

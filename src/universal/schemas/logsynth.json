@@ -1,0 +1,35 @@
+[
+  {"name":"id", "class":"id"},
+  {"name":"size", "class":"int", "min":0, "max":9999999},
+  {"name":"status", "class":"string", "dist":{ "INFO": 0.80, "WARNING": 0.15, "SEVERE": 0.05} },
+  {"name":"name", "class":"name", "type":"first_last"},
+  {"name":"gender", "class":"string", "dist":{"MALE":0.5, "FEMALE":0.5, "OTHER":0.02}},
+  {"name":"os", "class":"os"},
+  {"name": "uuid", "class": "uuid", "seed": 123 },
+  {"name": "changes", "class": "changer",
+    "values": [
+      {
+        "name": "x",
+        "class": "int"
+      },
+      {
+        "name": "y",
+        "class": "int"
+      }
+    ],
+    "rate": "0.15/d",
+    "offset": "1d",
+    "start": "2015-07-01 0:00",
+    "end": "2015-08-01 0:00"
+  },
+  { "name": "metric", "class": "string", "dist":{
+    "Heap Usage": 0.20, "Thread Usage": 0.20, "CPU Usage": 0.20, "GC Time": 0.20, "Response Time": 0.20}
+  },
+  { "name": "value", "class": "random-walk", "seed": 12, "verbose": "true",
+    "precision": {
+      "class": "gamma",
+      "seed": 13,
+      "dof": 2
+    }
+  }
+]

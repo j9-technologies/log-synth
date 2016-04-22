@@ -23,5 +23,5 @@ resolvers += "Sonatype repository" at "https://oss.sonatype.org/content/reposito
 addSbtPlugin("com.j9tech" % "sbt-project" % "0.9.0")
 
 // Use SBT's Native Packager
-addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.0.4")
+addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.1.0-RC3")
 

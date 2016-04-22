@@ -1,6 +1,13 @@
 
 import com.j9tech.sbt.ProjectPlugin
 import com.j9tech.sbt.ProjectPlugin.autoImport._
+import com.typesafe.sbt.SbtNativePackager.packageArchetype
+import com.typesafe.sbt.packager.Keys._
+import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
+import com.typesafe.sbt.packager.jdkpackager.JDKPackagerPlugin
+import com.typesafe.sbt.packager.jdkpackager.JDKPackagerPlugin.autoImport._
+import com.typesafe.sbt.packager.universal.UniversalPlugin
+import com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport._
 import sbt._
 import sbt.Keys._
 
@@ -45,16 +52,20 @@ object LogSynthBuild extends Build {
 
   lazy val log_synth =
     sbt.Project("log-synth", file(".")).
-      enablePlugins(ProjectPlugin).
+      enablePlugins(ProjectPlugin, JavaAppPackaging).
       settings(
         codePackage := "j9.logsynth",
         sbtbuildinfo.BuildInfoKeys.buildInfoPackage := "j9.logsynth",
         sbtbuildinfo.BuildInfoKeys.buildInfoObject := "BuildInfo",
+        packageSummary := "JDKPackagerPlugin example package thingy",
+        packageDescription := "A test package using Oracle's JDK bundled javapackager tool.",
+        mappings in Universal <+= packageBin in Compile map { p => file("README.md") -> "README" },
         titleForDocs := "J9 Log Maker",
         javacOptions := javacOptions.value.filterNot { opt ⇒ opt.equals("-Xdoclint:all") || opt.equals("-Werror") },
         resolvers := all_resolvers,
-        mainClass := Some("j9.logsynth.LogSynth"),
-        libraryDependencies ++= all_dependencies
+        mainClass in Compile := Some("j9.logsynth.LogSynth"),
+
+          libraryDependencies ++= all_dependencies
       )
 
   override def rootProject = Some(log_synth)
