@@ -22,8 +22,6 @@ object LogSynthBuild extends Build {
   val mahout_math = "org.apache.mahout" % "mahout-math" % "0.9"
   val stream  =      "com.clearspring.analytics" % "stream"  % "2.5.0" % "test"
   val junit = "junit" % "junit" % "4.8.2"   % "test"
-  val slf4j_api = "org.slf4j" % "slf4j-api" % "1.7.5"
-  val slf4j_log4j12 = "org.slf4j" % "slf4j-log4j12" % "1.7.7"   % "runtime"
   val args4j = "args4j" % "args4j" % "2.0.23"
   val jackson_databind = "com.fasterxml.jackson.core" % "jackson-databind" % "2.4.0"
   val woodstox_core_asl = "org.codehaus.woodstox" % "woodstox-core-asl" % "4.1.4"
@@ -36,11 +34,13 @@ object LogSynthBuild extends Build {
   val clist_core = "org.backuity.clist" %% "clist-core"   % "2.0.2"
   val clist_macros = "org.backuity.clist" %% "clist-macros" % "2.0.2" % "provided"
   val logback_classic = "ch.qos.logback"  % "logback-classic" % "1.1.7"
+  val akka_actors = "com.typesafe.akka" %% "akka-actor" % "2.4.4"
+  val reactific_helpers = "com.reactific" %% "helpers" % "0.3.7"
 
   val all_dependencies = Seq (
-    JavaFastPFOR, mahout_math, stream , junit, slf4j_api, slf4j_log4j12, args4j, jackson_databind, woodstox_core_asl,
+    JavaFastPFOR, mahout_math, stream , junit, args4j, jackson_databind, woodstox_core_asl,
     jackson_dataformat_xml, freemarker, t_digest, stax_api, core, t_digest, t_digest_test, clist_core, clist_macros,
-    logback_classic
+    logback_classic, akka_actors, reactific_helpers
   )
 
   lazy val log_synth =

@@ -15,9 +15,9 @@ libraryDependencies ++= Seq(
 
 
 // The Typesafe repository
-resolvers += "J9 Repository" at "http://nexus.j9tech.com:8081/repository/j9-build"
+resolvers += "J9 Repository" at "https://nexus.j9tech.com/repository/j9-build"
 resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
-resolvers += "Sonatype respository" at "https://oss.sonatype.org/content/repositories/releases/"
+resolvers += "Sonatype repository" at "https://oss.sonatype.org/content/repositories/releases/"
 
 // Use the Play sbt plugin for Play projects
 addSbtPlugin("com.j9tech" % "sbt-project" % "0.9.0")
