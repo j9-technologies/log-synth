@@ -69,7 +69,7 @@ public class CommuterTest {
         Commuter c = new Commuter();
         double t1 = df.parse("2015-09-23 23:15:06 PDT").getTime() / 1000.0;
         double t2 = df.parse("2015-09-23 23:00:00 PDT").getTime() / 1000.0;
-        assertEquals(String.format("Got %s", df.format(new Date((long) (c.evenHour(t1) * 1000)))), t2, c.evenHour(t1), 0);
+        assertEquals(String.format("Got %s", df.format(new Date((c.evenHour(t1) * 1000)))), t2, c.evenHour(t1), 0);
     }
 
     @Test
