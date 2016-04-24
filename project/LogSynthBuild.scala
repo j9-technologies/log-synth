@@ -2,11 +2,15 @@
 import com.j9tech.sbt.ProjectPlugin
 import com.reactific.sbt.PublishUniversalPlugin
 import com.reactific.sbt.settings._
+import com.typesafe.sbt.packager
 import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
 import com.typesafe.sbt.packager.Keys._
+import com.typesafe.sbt.packager.universal
 import com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport.Universal
 import sbt._
 import sbt.Keys._
+import sbtrelease.ReleasePlugin.autoImport._
+import sbtrelease.ReleaseStateTransformations._
 
 import scala.language.postfixOps
 
@@ -61,7 +65,23 @@ object LogSynthBuild extends Build {
         javacOptions := javacOptions.value.filterNot { opt ⇒ opt.equals("-Xdoclint:all") || opt.equals("-Werror") },
         resolvers := all_resolvers,
         mainClass in Compile := Some("j9.logsynth.LogSynth"),
-        libraryDependencies ++= all_dependencies
+        libraryDependencies ++= all_dependencies,
+        releaseProcess := Seq[ReleaseStep](
+          checkSnapshotDependencies,
+          inquireVersions,
+          runClean,
+          runTest,
+          setReleaseVersion,
+          commitReleaseVersion,
+          tagRelease,
+          releaseStepTask(com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport.dist),
+          publishArtifacts,
+          setNextVersion,
+          commitNextVersion,
+          releaseStepCommand("sonatypeReleaseAll"),
+          pushChanges
+        )
+
       )
 
   override def rootProject = Some(log_synth)
