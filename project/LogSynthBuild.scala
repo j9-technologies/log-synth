@@ -65,23 +65,7 @@ object LogSynthBuild extends Build {
         javacOptions := javacOptions.value.filterNot { opt ⇒ opt.equals("-Xdoclint:all") || opt.equals("-Werror") },
         resolvers := all_resolvers,
         mainClass in Compile := Some("j9.logsynth.LogSynth"),
-        libraryDependencies ++= all_dependencies,
-        releaseProcess := Seq[ReleaseStep](
-          checkSnapshotDependencies,
-          inquireVersions,
-          runClean,
-          runTest,
-          setReleaseVersion,
-          commitReleaseVersion,
-          tagRelease,
-          releaseStepTask(com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport.dist),
-          publishArtifacts,
-          setNextVersion,
-          commitNextVersion,
-          releaseStepCommand("sonatypeReleaseAll"),
-          pushChanges
-        )
-
+        libraryDependencies ++= all_dependencies
       )
 
   override def rootProject = Some(log_synth)

@@ -20,5 +20,5 @@ resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/release
 resolvers += "Sonatype repository" at "https://oss.sonatype.org/content/repositories/releases/"
 
 // Use the Play sbt plugin for Play projects
-addSbtPlugin("com.j9tech" % "sbt-project" % "1.0.1")
+addSbtPlugin("com.j9tech" % "sbt-project" % "1.0.2")
 
